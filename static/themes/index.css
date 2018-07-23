@@ -19,3 +19,7 @@ img{
   height: 125px;
   width: 75;
 }
+.login_button{
+  border-width: thick;
+  color: red;
+}

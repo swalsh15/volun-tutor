@@ -58,7 +58,7 @@ class CreatePost(webapp2.RequestHandler):
         if user:
             new_post = Post(author = user.user_id(),
             title = self.request.get('title'),
-            content = self.request.get('post'))
+            content = selsf.request.get('post'))
             new_post.put()
 
             #display posts
