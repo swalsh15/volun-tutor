@@ -38,7 +38,7 @@ class ViewPosts(webapp2.RequestHandler):
         template =env.get_template('/templates/view_posts.html')
         self.response.write(template.render())
 
-class Login():
+class Login(webapp2.RequestHandler):
     def get(self):
         template =env.get_template('/templates/login.html')
         self.response.write(template.render())
