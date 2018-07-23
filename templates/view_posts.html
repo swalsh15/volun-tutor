@@ -16,11 +16,11 @@
 
 
   {% for i in range(length)%}
-
-  <h5> {{title[i]}} <br>
-    {{content[i]}}
-  </h5>
-
+  <div class = "Feed_post"
+  <h1 id="title"> {{title[i]}} </h1>
+  <p id="content">{{content[i]}}</p>
+  </div>
+  <hr width = "750">
   {% endfor %}
 
 </div>
