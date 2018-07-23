@@ -55,4 +55,5 @@ app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/join', SignUp),
     ('/view_posts', ViewPosts),
+    ('/login', Login),
 ], debug=True)
