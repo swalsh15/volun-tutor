@@ -3,35 +3,27 @@
   <head>
     <link rel="stylesheet" href="../static/themes/index.css">
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
     <title>Home Page</title>
   </head>
-  <center>
-<div class="title">
-  <h1 id="heading">Welcome to Voluntutor!</h1>
-  <h3 id="subheading">The #1 site for connecting students to volunteer tutors</h3>
-
-</div>
-  </center>
   <body>
-    <form class="signup_login" action="index.html" method="post">
+    <div class="title">
+    <h1 id="heading">Welcome to Volun-Tutor!</h1>
+    <h3 id="subheading">The #1 site for connecting students to volunteer tutors</h3>
+    <br/>
+    <!-- <form class="signup_login" action="index.html" method="post"> -->
       <!-- <button type="submit" name="login">Login</button> -->
-        <form class= 'login_button'>
-         <input type="button" value="Log In/Sign Up" onclick="window.location.href='/join'" />
-      </form>
-
-        <center>
-        <li class='website_features'>Tutor? find students who are seeking your help</li>
-        <li class='website_features'>Searching for a Tutor? find tutors near you</li>
-    </center>
-
-
+    <li class='website_features'>Are you a Tutor? <br/> Find students who are seeking your help</li>
+    <br/>
+    <li class='website_features'>Are you Searching for a Tutor? <br/> Find tutors near you</li>
+    <br/>
+    <form class= 'login_button'>
+         <input class= "button" type="button" value="Log In/Sign Up" onclick="window.location.href='/join'" />
+    </form>
+    <br/>
+    <div class="tutoringgif">
+      <img src="../static/themes/tutoring.gif">
+    </div>
+   </div>
   </body>
-  <br>
-  <br>
-  <br>
-  <div class="tutoringgif">
-    <center>
-    <img src="../static/themes/tutoring.gif" >
-  </center>
-  </div>
 </html>

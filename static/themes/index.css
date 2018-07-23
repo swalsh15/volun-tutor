@@ -1,3 +1,19 @@
+body, body *{
+  /* border: 1px solid purple; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px auto;
+  width: 85%;
+  font-family: 'Domine', serif;
+
+}
+body{
+  background: url('bground.jpg') repeat-Y;
+  background-attachment:;
+  background-size: cover;
+
+}
 .title{
 
   background-position: center;
@@ -5,21 +21,26 @@
   color: White;
   text-shadow: 3px 2px black;
   font-family: cursive;
-  background-size: 70% ;
-}
-body{
-  background: url('bground.jpg') repeat-Y;
-  background-attachment:;
-  background-size: cover;
+  /* background-size: 70% ; */
+  font-size: 150%;
 }
 .signup_login{
   float: right;
 }
 img{
-  height: 125px;
-  width: 75;
+  height: 400px;
+  width: 400px;
 }
 .login_button{
   border-width: thick;
-  color: red;
+  color: white;
+  width: 15%;
+}
+.website_features{
+  text-align: center;
+}
+
+.button{
+  color: white;
+  background-color: #6B7D7D;
 }
