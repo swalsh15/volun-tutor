@@ -46,16 +46,20 @@ class ViewPosts(webapp2.RequestHandler):
         template =env.get_template('/templates/view_posts.html')
         self.response.write(template.render())
 
-class CreateProfile(webapp2.RequestHandler):
-    def get(self):
-        if users.get_current_user():
-            print('hello')
 
 class CreatePost(webapp2.RequestHandler):
     def get(self):
-        template =env.get_template('/templates/post.html')
-        self.response.write(template.render())
-
+        user = users.get_current_user()
+        if user:
+            template =env.get_template('/templates/post.html')
+            self.response.write(template.render())
+    def post(self):
+        user = users.get_current_user()
+        if user:
+            new_post = Post(author = user.user_id(),
+            title = self.request.get('title'),
+            content = self.request.get('post'))
+            new_post.put()
 
 class User(ndb.Model):
     name = ndb.StringProperty()
@@ -64,6 +68,11 @@ class User(ndb.Model):
     grade = ndb.StringProperty()
     email = ndb.StringProperty()
     password = ndb.StringProperty()
+
+class Post(ndb.Model):
+    title = ndb.StringProperty()
+    author = ndb.StringProperty()
+    content = ndb.StringProperty()
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
