@@ -14,27 +14,15 @@
 <div class = "container">
 <h2> Sign Up </h2>
 
-<form method = "post">
-Name:
-<input type = "text" name = "Username" placeholder= "name"/> <br/>
-Email:
-<input type = "text" name = "Email" placeholder= "email"/> <br/>
-Password:
-<input type = "password" name = "Password" placeholder= "password"/> <br/>
-Zip code:
-<input type = "number" name = "Zip Code" placeholder= "zipcode"/> <br/>
-Grade level:
-<input type = "text" name = "Grade Level" placeholder= "grade"/> <br/>
+{% if user %}
+  <h1> Welcome {{nickname}} </h1> <br>
 
+  <a href = "{{logout_url}}" > Logout </a>
 
-<select name = "type">
-  <option value="student">Student</option>
-  <option value="tutor">Tutor</option>
-</select> <br/>
-<br>
-<input type = "submit" value = "Submit"/>
-</form>
-<br>
+  {% else %}
+  <h1> Welcome Sign In </h1>
+  <a href = "{{login_url}}"> Sign In</a>
+  {% endif %}
 
 </div>
 </body>
