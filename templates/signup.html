@@ -11,31 +11,15 @@
 <div class = "container">
 <h2> Signup Test Page </h2>
 
-<form method = "post">
-Name:
-<input type = "text" name = "username" placeholder= "name"/> <br/>
-Email:
-<input type = "text" name = "email" placeholder= "email"/> <br/>
-Password:
-<input type = "password" name = "password" placeholder= "password"/> <br/>
-Zip code:
-<input type = "number" name = "zipcode" placeholder= "zipcode"/> <br/>
-<<<<<<< HEAD
-<input type = "number" name = "grade" placeholder= "grade"/> <br/>
-=======
-Grade level:
-<input type = "text" name = "grade" placeholder= "grade"/> <br/>
->>>>>>> f73a91d7b8be892620756da1abd4ea7e8c057f9b
+{% if user %}
+  <h1> Welcome {{nickname}} </h1> <br>
 
+  <a href = "{{logout_url}}" > Logout </a>
 
-<select name = "type">
-  <option value="student">Student</option>
-  <option value="tutor">Tutor</option>
-</select> <br/>
-<br>
-<input type = "submit" value = "Submit"/>
-</form>
-<br>
+  {% else %}
+  <h1> Welcome Sign In </h1>
+  <a href = "{{login_url}}"> Sign In</a>
+  {% endif %}
 
 </div>
 </body>
