@@ -13,11 +13,14 @@
   <div class = "container">
   <h1 id = "heading"> Student Feed</h1>
   <div class = "postBox">
-  <h2>{{post}}</h2>
+
 
   {% for i in range(length)%}
 
-  <h5> Title: {{titlelist[i]}}, Name: {{name}}, Content: {{contents[i]}}</h5>
+  <h5> {{title[i]}} <br>
+    {{content[i]}}
+  </h5>
+
   {% endfor %}
 
 </div>
