@@ -18,14 +18,15 @@ class SignUp(webapp2.RequestHandler):
     def get(self):
 
         user = users.get_current_user()
-        #self.response.write(user.user_id())
-        #assign these to something so the program runs
         nickname = None
         logout_url = None
         login_url = None
 
         if user:
-            self.redirect('/create_profile')
+            if User.query(User.id == user.user_id()).get():
+                self.redirect('/profile')
+            else:
+                 self.redirect('/create_profile')
         else:
             login_url = users.create_login_url('/')
 
