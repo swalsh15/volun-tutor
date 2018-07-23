@@ -43,40 +43,44 @@ class SignUp(webapp2.RequestHandler):
 
 class ViewPosts(webapp2.RequestHandler):
     def get(self):
-        template =env.get_template('/templates/view_posts.html')
-        self.response.write(template.render())
-
+        print('ee')
 
 class CreatePost(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            template =env.get_template('/templates/post.html')
+            template = env.get_template('/templates/post.html')
             self.response.write(template.render())
     def post(self):
+
+        allPosts = Post.query()
+
         user = users.get_current_user()
-        if user:
-            new_post = Post(author = user.user_id(),
-            title = self.request.get('title'),
-            content = self.request.get('post'))
-            new_post.put()
+        new_post = Post(author = user.user_id(),
+        title = self.request.get('title'),
+        content = self.request.get('post'))
+        new_post.put()
 
-            #display posts
-            allPosts = Post.query()
-            template_vars = {}
-            titleList = []
-            contentList = []
 
-            for i in allPosts.fetch():
-                contentList.append(i.content)
-                titleList.append(i.title)
+        title = []
+        content = []
+        title.append(new_post.title)
+        content.append(new_post.content)
 
-            template_vars['titlelist'] = titleList
-            template_vars['contents'] = contentList
-            template_vars['length'] = len(titleList)
+        for blog_post in allPosts.fetch():
+            title.append(blog_post.title)
+            content.append(blog_post.content)
 
-            template =env.get_template('/templates/view_posts.html')
-            self.response.write(template.render(template_vars))
+
+
+        template_vars = {
+            'title': title,
+            'content': content,
+            'length' : len(title)
+        }
+
+        template = env.get_template('/templates/view_posts.html')
+        self.response.write(template.render(template_vars))
 
 class User(ndb.Model):
     name = ndb.StringProperty()
@@ -95,5 +99,5 @@ app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/join', SignUp),
     ('/view_posts', ViewPosts),
-    ('/post', CreatePost)
+    ('/post', CreatePost),
 ], debug=True)
