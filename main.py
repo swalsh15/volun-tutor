@@ -25,8 +25,7 @@ class SignUp(webapp2.RequestHandler):
         login_url = None
 
         if user:
-            nickname = user.nickname()
-            logout_url = users.create_logout_url('/')
+            self.redirect('/create_profile')
         else:
             login_url = users.create_login_url('/')
 
@@ -54,7 +53,6 @@ class CreatePost(webapp2.RequestHandler):
     def post(self):
 
         allPosts = Post.query()
-
         user = users.get_current_user()
         if user:
             new_post = Post(author = user.user_id(),
@@ -71,15 +69,39 @@ class CreatePost(webapp2.RequestHandler):
             title.append(blog_post.title)
             content.append(blog_post.content)
 
-
-
         template_vars = {
             'title': title,
             'content': content,
             'length' : len(title)
         }
-
         template = env.get_template('/templates/view_posts.html')
+        self.response.write(template.render(template_vars))
+
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            template = env.get_template('/templates/create_profile.html')
+            self.response.write(template.render())
+    def post(self):
+        user = users.get_current_user()
+        new_user = User(name = self.request.get('name'),
+        type = self.request.get('type'),
+        zipcode = self.request.get('zipcode'),
+        grade = self.request.get('grade'),
+        id = user.user_id())
+
+        new_user.put()
+        self.redirect('/profile')
+
+class ShowProfile(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        profile_info = User.query(User.id == user.user_id()).get()
+
+        template_vars = {'name': profile_info.name, 'type': profile_info.type, 'zipcode': profile_info.zipcode, 'grade': profile_info.grade, 'id': profile_info.id}
+
+        template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
 
 class User(ndb.Model):
@@ -87,8 +109,7 @@ class User(ndb.Model):
     type = ndb.StringProperty()
     zipcode = ndb.StringProperty()
     grade = ndb.StringProperty()
-    email = ndb.StringProperty()
-    password = ndb.StringProperty()
+    id = ndb.StringProperty()
 
 class Post(ndb.Model):
     title = ndb.StringProperty()
@@ -99,5 +120,7 @@ app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/join', SignUp),
     ('/view_posts', ViewPosts),
+    ('/create_profile', ProfileHandler),
     ('/post', CreatePost),
+    ('/profile', ShowProfile),
 ], debug=True)
