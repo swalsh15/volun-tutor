@@ -25,6 +25,12 @@ class SignUp(webapp2.RequestHandler):
         new_user.put()
 
         template = env.get_template('/templates/view_posts.html')
+        self.response.write(template.render())
+
+class ViewPosts(webapp2.RequestHandler):
+    def get(self):
+        template =env.get_template('/templates/view_posts.html')
+        self.response.write(template.render())
 
 class User(ndb.Model):
     name = ndb.StringProperty()
@@ -33,5 +39,5 @@ class User(ndb.Model):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/join', SignUp),
-
+    ('/view_posts', ViewPosts),
 ], debug=True)
