@@ -18,10 +18,16 @@ class SignUp(webapp2.RequestHandler):
         template = env.get_template('/templates/signup.html')
         self.response.write(template.render())
     def post(self):
-        name = self.request.get('username')
-        type = self.request.get('type')
 
-        new_user = User(name = name, type = type)
+        new_user = User(
+        name = self.request.get('username'),
+        type = self.request.get('type'),
+        email = self.request.get('email'),
+        password = self.request.get('password'),
+        zipcode = self.request.get('zipcode'),
+
+
+        )
         new_user.put()
 
         template = env.get_template('/templates/view_posts.html')
@@ -32,9 +38,18 @@ class ViewPosts(webapp2.RequestHandler):
         template =env.get_template('/templates/view_posts.html')
         self.response.write(template.render())
 
+class Login():
+    def get(self):
+        template =env.get_template('/templates/login.html')
+        self.response.write(template.render())
+
 class User(ndb.Model):
     name = ndb.StringProperty()
     type = ndb.StringProperty()
+    zipcode = ndb.IntegerProperty()
+    grade = ndb.StringProperty()
+    email = ndb.StringProperty()
+    password = ndb.StringProperty()
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
