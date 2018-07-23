@@ -15,3 +15,7 @@ body{
 .signup_login{
   float: right;
 }
+img{
+  height: 125px;
+  width: 75;
+}
