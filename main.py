@@ -25,8 +25,7 @@ class SignUp(webapp2.RequestHandler):
         email = self.request.get('email'),
         password = self.request.get('password'),
         zipcode = self.request.get('zipcode'),
-
-
+        grade = self.request.get('grade')
         )
         new_user.put()
 
@@ -43,10 +42,25 @@ class Login(webapp2.RequestHandler):
         template =env.get_template('/templates/login.html')
         self.response.write(template.render())
 
+    def post(self):
+        username = self.request.get('username')
+        currentUser = User.query(User.name == username).fetch()
+
+        template = env.get_template('/templates/post.html')
+        self.response.write(template.render())
+
+        self.response.write(currentUser)
+
+class CreatePost(webapp2.RequestHandler):
+    def get(self):
+        template =env.get_template('/templates/post.html')
+        self.response.write(template.render())
+
+
 class User(ndb.Model):
     name = ndb.StringProperty()
     type = ndb.StringProperty()
-    zipcode = ndb.IntegerProperty()
+    zipcode = ndb.StringProperty()
     grade = ndb.StringProperty()
     email = ndb.StringProperty()
     password = ndb.StringProperty()
@@ -56,4 +70,5 @@ app = webapp2.WSGIApplication([
     ('/join', SignUp),
     ('/view_posts', ViewPosts),
     ('/login', Login),
+    ('/post', CreatePost)
 ], debug=True)
