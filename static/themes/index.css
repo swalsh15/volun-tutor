@@ -1,0 +1,16 @@
+.title{
+  background: url('tutoring1.jpg') no-repeat;
+  background-position: center;
+  background-attachment:fixed;
+  color: White;
+  text-shadow: 3px 2px black;
+  font-family: cursive;
+}
+body{
+  background: url('bground.jpg') repeat-Y;
+  background-attachment:;
+  background-size: cover;
+}
+signup_login{
+  float: right;
+}
