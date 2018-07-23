@@ -61,6 +61,23 @@ class CreatePost(webapp2.RequestHandler):
             content = self.request.get('post'))
             new_post.put()
 
+            #display posts
+            allPosts = Post.query()
+            template_vars = {}
+            titleList = []
+            contentList = []
+
+            for i in allPosts.fetch():
+                contentList.append(i.content)
+                titleList.append(i.title)
+
+            template_vars['titlelist'] = titleList
+            template_vars['contents'] = contentList
+            template_vars['length'] = len(titleList)
+
+            template =env.get_template('/templates/view_posts.html')
+            self.response.write(template.render(template_vars))
+
 class User(ndb.Model):
     name = ndb.StringProperty()
     type = ndb.StringProperty()

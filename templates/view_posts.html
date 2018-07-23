@@ -14,7 +14,12 @@
   <h1 id = "heading"> Student Feed</h1>
   <div class = "postBox">
   <h2>{{post}}</h2>
-  <h5> Title: {{title}}, Name: {{name}}, Content: {{content}}</h5>
+
+  {% for i in range(length)%}
+
+  <h5> Title: {{titlelist[i]}}, Name: {{name}}, Content: {{contents[i]}}</h5>
+  {% endfor %}
+
 </div>
 </div>
 </body>
