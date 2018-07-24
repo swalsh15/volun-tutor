@@ -79,8 +79,9 @@ class CreatePost(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+            template_vars = {'logout_url': users.create_logout_url('/')}
             template = env.get_template('/templates/post.html')
-            self.response.write(template.render())
+            self.response.write(template.render(template_vars))
     def post(self):
         allPosts = Post.query()
         user = users.get_current_user()
