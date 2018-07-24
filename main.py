@@ -51,7 +51,18 @@ class ViewPosts(webapp2.RequestHandler):
     def get(self):
         title = []
         content = []
-        allPosts = Post.query()
+
+        #get current user's type
+        user = users.get_current_user()
+        current_user = User.query(User.id == user.user_id()).get()
+        current_user_type = current_user.type
+
+        #determine what feed to load
+        if current_user_type == 'Tutor':
+            allPosts = Post.query(Post.type == 'student')
+        else:
+            allPosts = Post.query(Post.type == 'Tutor')
+
         for blog_post in allPosts.fetch():
             title.append(blog_post.title)
             content.append(blog_post.content)
@@ -75,8 +86,9 @@ class CreatePost(webapp2.RequestHandler):
         user = users.get_current_user()
         title = self.request.get('title')
         content = self.request.get('post')
+        author = User.query(User.id == user.user_id()).get() #returns user object
         if user:
-            new_post = Post(author = user.user_id(),
+            new_post = Post(type = author.type,
             title = self.request.get('title'),
             content = self.request.get('post'))
             new_post.put()
@@ -155,7 +167,7 @@ class User(ndb.Model):
 
 class Post(ndb.Model):
     title = ndb.StringProperty()
-    author = ndb.StringProperty()
+    type = ndb.StringProperty()
     content = ndb.StringProperty()
 
 app = webapp2.WSGIApplication([
