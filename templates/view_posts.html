@@ -5,8 +5,29 @@
   <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 </head>
 <body>
-  <br>
-  <header>Volun-Tutor</header>
+  <header class = "header3">
+  <header class = "header2">
+  <header class = "header1">
+    <h1 class = "page-title">Volun-Tutor</h1>
+    <p class= "spacer"></p>
+    <nav>
+      <a class = "navlinks" href = "/">Home</a>
+      {% if user %}
+        {% if current_user == None %}
+        <a class = "navlinks" href = "/create_profile">Join</a>
+        {% else %}
+        <a class = "navlinks"  href = "/profile">Profile</a>
+        <a class = "navlinks" href = "/post">Post</a>
+        <!-- <a class = "navlinks" href = "/view_posts">Feed</a> -->
+        <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
+        {% endif %}
+      {% else %}
+      <a class = "navlinks" href = "/join">Join</a>
+      {% endif %}
+    </nav>
+  </header>
+  </header>
+  </header>
   <br>
   <br>
   <br>
@@ -19,7 +40,7 @@
   <h1 id="title"> {{title[i]}} </h1>
   <p id="content">{{content[i]}}</p>
   </div>
-  <hr width = "750">
+  <hr class = "line" width = "750">
   {% endfor %}
 
 </div>
