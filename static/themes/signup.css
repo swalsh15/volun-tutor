@@ -1,6 +1,9 @@
 body, body *{
   font-family: 'Domine', serif;
 }
+body{
+  background-color: #EFD9CE;
+}
 h1{
   text-align: center;
 }
@@ -11,7 +14,7 @@ h1{
   line-height: 300%;
   text-align: center;
   border-radius: 25px;
-  border: 5px solid lightblue;
+  border: 5px solid #8FBB99;
   /* box-sizing: border-box */
 
 }
