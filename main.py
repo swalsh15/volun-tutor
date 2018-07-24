@@ -70,7 +70,7 @@ class ViewPosts(webapp2.RequestHandler):
             title.append(blog_post.title)
             content.append(blog_post.content)
             if blog_post.author != None:
-                authors.append(blog_post.author.get().name)
+                authors.append(blog_post.author)
 
         template_vars = {
             'title': title,
@@ -82,7 +82,7 @@ class ViewPosts(webapp2.RequestHandler):
         }
         template = env.get_template('/templates/view_posts.html')
         self.response.write(template.render(template_vars))
-    
+
 
 class CreatePost(webapp2.RequestHandler):
     def get(self):
