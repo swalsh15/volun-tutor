@@ -18,9 +18,15 @@
           {% if current_user == None %}
           <a class = "navlinks" href = "/create_profile">Create Profile</a>
           {% else %}
+<<<<<<< HEAD
           <a class = "navlinks"  href = "/profile">Profile</a>
           <a class = "navlinks" href = "/post">Create a Post</a>
           <a class = "navlinks" href = "/view_posts">View Your Feed</a>
+=======
+          <a class = "navlinks" href = "/profile">Profile</a>
+          <a class = "navlinks" href = "/post"> Post </a>
+          <a class = "navlinks" href = "/view_posts"> View Posts </a>
+>>>>>>> a47b615872eba28b702d7b50cc4b1f05ca966b6a
           <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
           {% endif %}
         {% else %}
@@ -43,7 +49,7 @@
     <li class='website_features'>Are you searching for a Tutor? <br/> Find tutors near you</li>
     <br/>
     <form class= 'login_button'>
-         <input class= "button" type="button" value="Log In/Sign Up" onclick="window.location.href='/join'" />
+         <input class= "button" type="button" value="Log In/Sign Up" onclick="window.location.href='/join' " />
     </form>
     <br/>
     <div class="tutoringgif">
