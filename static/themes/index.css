@@ -105,4 +105,17 @@ nav{
   color: black;
   padding-right: 15px;
 }
-.mySlides {display:none}
+.mySlides {display: none}
+/* .mySlides1{
+   width: 150%;
+} */
+.w3-section{
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+}
+.buttons{
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+}
