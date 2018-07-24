@@ -46,10 +46,12 @@
   <h1 id="title"> {{title[i]}} </h1>
 
   <form method = "post">
-  <h6> Name: {{author[i]}} </h6>
-  </form>
+
+  <button type="submit" name="button" value = {{author[i].urlsafe()}}> {{author[i]}}</button>
+</form>
 
   <p id="content">{{content[i]}}</p>
+
   </div>
   <hr class = "line" width = "750">
   {% endfor %}
