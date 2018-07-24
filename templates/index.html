@@ -18,17 +18,9 @@
           {% if current_user == None %}
           <a class = "navlinks" href = "/create_profile">Create Profile</a>
           {% else %}
-<<<<<<< HEAD
           <a class = "navlinks"  href = "/profile">Profile</a>
           <a class = "navlinks" href = "/post">Post</a>
           <a class = "navlinks" href = "/view_posts">Feed</a>
-=======
-
-          <a class = "navlinks" href = "/profile">Profile</a>
-          <a class = "navlinks" href = "/post"> Post </a>
-          <a class = "navlinks" href = "/view_posts"> View Posts </a>
-
->>>>>>> b018a34011c9247d9b99bbaa74c972462ebb4fd1
           <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
           {% endif %}
         {% else %}
@@ -50,7 +42,7 @@
     <br/>
     <li class='website_features'>Are you searching for a Tutor? <br/> Find tutors near you</li>
     <br/>
-    
+
     <div class="tutoringgif">
       <img src="../static/themes/tutoring.gif">
     </div>
