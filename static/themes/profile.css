@@ -61,4 +61,5 @@ body{
   .navlinks{
     height: fit-content;
     color: black;
+    padding-right: 15px;
   }

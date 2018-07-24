@@ -190,6 +190,7 @@ def addPost(title, type, content):
         new_post = Post(title=title, type=type, content=content)
         new_post.put()
 
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/join', SignUp),
