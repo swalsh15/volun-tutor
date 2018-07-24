@@ -60,7 +60,7 @@ class ViewPosts(webapp2.RequestHandler):
 
         #determine what feed to load
         if current_user_type == 'Tutor':
-            allPosts = Post.query(Post.type == 'student')
+            allPosts = Post.query(Post.type == 'Student')
             feed_name = 'Student Feed'
         else:
             allPosts = Post.query(Post.type == 'Tutor')
@@ -82,7 +82,17 @@ class ViewPosts(webapp2.RequestHandler):
         }
         template = env.get_template('/templates/view_posts.html')
         self.response.write(template.render(template_vars))
+    def post(self):
+        key_string = self.request.get('button')
+        key = ndb.Key(urlsafe = key_string)
 
+        profile_info = key.get()
+        template_vars = {'name': profile_info.name, 'type': profile_info.type,
+        'zipcode': profile_info.zipcode, 'grade': profile_info.grade, 'id': profile_info.id,
+        'logout_url' : users.create_logout_url('/')}
+
+        template = env.get_template('/templates/profile.html')
+        self.response.write(template.render(template_vars))
 
 class CreatePost(webapp2.RequestHandler):
     def get(self):
@@ -182,7 +192,7 @@ class Post(ndb.Model):
     title = ndb.StringProperty()
     type = ndb.StringProperty()
     content = ndb.StringProperty()
-    author = ndb.KeyProperty()
+    author = ndb.KeyProperty(kind = "User")
 
 #testing method for posts
 def addPost(title, type, content):

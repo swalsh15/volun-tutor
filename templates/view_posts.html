@@ -40,11 +40,13 @@
   <div class = "Feed_post"
   <h1 id="title"> {{title[i]}} </h1>
 
-  <h6> Name: {{author[i]}}  </h6>
+  <form method = "post">
 
+  <button type="submit" name="button" value = {{author[i].urlsafe()}}> {{author[i]}}</button>
+</form>
 
   <p id="content">{{content[i]}}</p>
-  <button type="submit" name="button">Profile</button>
+
   </div>
   <hr class = "line" width = "750">
   {% endfor %}
