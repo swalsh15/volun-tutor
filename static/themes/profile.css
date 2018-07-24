@@ -7,7 +7,7 @@ body, body *{
   /* width: 85%; */
   font-family: 'Domine', serif;
 }
-html{
+body{
   background-color: #EFD9CE;
 }
   .spacer{
@@ -62,12 +62,3 @@ html{
     height: fit-content;
     color: black;
   }
-.form{
-  text-align: center;
-}
-.input{
-  border-radius: 7px;
-}
-.button{
-   font-size: 15px;
-}
