@@ -5,6 +5,7 @@
   <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 </head>
 <body>
+  <div class = "holder">
   <header class = "header3">
   <header class = "header2">
   <header class = "header1">
@@ -18,16 +19,16 @@
         {% else %}
         <a class = "navlinks"  href = "/profile">Profile</a>
         <a class = "navlinks" href = "/post">Post</a>
-        <!-- <a class = "navlinks" href = "/view_posts">Feed</a> -->
         <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
         {% endif %}
       {% else %}
       <a class = "navlinks" href = "/join">Join</a>
+      <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
       {% endif %}
     </nav>
   </header>
   </header>
-  </header>
+</div>
   <br>
   <br>
   <br>
@@ -38,7 +39,15 @@
   {% for i in range(length)%}
   <div class = "Feed_post"
   <h1 id="title"> {{title[i]}} </h1>
+<<<<<<< HEAD
   <h6> Name: {{author[i]}}  </h6>
+=======
+
+  <form method = "post">
+  <h6> Name: {{author[i]}} </h6>
+  </form>
+
+>>>>>>> 896fe9a50327bdf79ba1f83b12b55acdd10dd0c3
   <p id="content">{{content[i]}}</p>
   <button type="submit" name="button">Profile</button>
   </div>
