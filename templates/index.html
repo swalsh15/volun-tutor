@@ -15,8 +15,12 @@
       <nav>
         <a class = "navlinks" href = "/">Home</a>
         {% if user %}
-        <a class = "navlinks" href = "/profile">Profile</a>
-        <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
+          {% if current_user == None %}
+          <a class = "navlinks" href = "/create_profile">Create Profile</a>
+          {% else %}
+          <a class = "navlinks" href = "/profile">Profile</a>
+          <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
+          {% endif %}
         {% else %}
         <a class = "navlinks" href = "/join">Log In/Join</a>
         {% endif %}
