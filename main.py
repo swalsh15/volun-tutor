@@ -69,27 +69,36 @@ class CreatePost(webapp2.RequestHandler):
     def post(self):
         allPosts = Post.query()
         user = users.get_current_user()
+        title = self.request.get('title')
+        content = self.request.get('post')
         if user:
             new_post = Post(author = user.user_id(),
             title = self.request.get('title'),
             content = self.request.get('post'))
             new_post.put()
-            title = []
-            content = []
-            title.append(new_post.title)
-            content.append(new_post.content)
-
-            for blog_post in allPosts.fetch():
-                title.append(blog_post.title)
-                content.append(blog_post.content)
-
-            template_vars = {
-                'title': title,
-                'content': content,
-                'length' : len(title)
+            # title = []
+            # content = []
+            # title.append(new_post.title)
+            # content.append(new_post.content)
+            #
+            # for blog_post in allPosts.fetch():
+            #     title.append(blog_post.title)
+            #     content.append(blog_post.content)
+            #
+            # template_vars = {
+            #     'title': title,
+            #     'content': content,
+            #     'length' : len(title)
+            # }
+            # template = env.get_template('/templates/view_posts.html')
+            # self.response.write(template.render(template_vars))
+            template_vars= {
+            'title': title,
+            'content':content,
             }
-            template = env.get_template('/templates/view_posts.html')
+            template = env.get_template('/templates/confirmpost.html')
             self.response.write(template.render(template_vars))
+
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
