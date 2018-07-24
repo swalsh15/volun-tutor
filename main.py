@@ -60,8 +60,10 @@ class ViewPosts(webapp2.RequestHandler):
         #determine what feed to load
         if current_user_type == 'Tutor':
             allPosts = Post.query(Post.type == 'student')
+            feed_name = 'Student Feed'
         else:
             allPosts = Post.query(Post.type == 'Tutor')
+            feed_name = 'Tutor Feed'
 
         for blog_post in allPosts.fetch():
             title.append(blog_post.title)
@@ -70,7 +72,8 @@ class ViewPosts(webapp2.RequestHandler):
         template_vars = {
             'title': title,
             'content': content,
-            'length' : len(title)
+            'length' : len(title),
+            'feed_name' : feed_name
         }
         template = env.get_template('/templates/view_posts.html')
         self.response.write(template.render(template_vars))
@@ -171,13 +174,14 @@ class Post(ndb.Model):
     type = ndb.StringProperty()
     content = ndb.StringProperty()
 
+#testing method for posts
 def addPost(title, type, content):
-    matching_songs = Post.query().filter(Post.title == title).filter(Post.type == type).filter(Post.content == content).fetch()
+    matching_post = Post.query().filter(Post.title == title).filter(Post.type == type).filter(Post.content == content).fetch()
 
     # Only add if post does not exist in db.
-    if len(matching_songs) == 0:
-        new_song = Post(title=title, type=type, content=content)
-        new_song.put()
+    if len(matching_post) == 0:
+        new_post = Post(title=title, type=type, content=content)
+        new_post.put()
 
 addPost("Help I need a math tutor", "student", "Have upcoming math test, please reach out to 203-432-5322")
 addPost("Looking to tutor", "Tutor", "Need volunteer hours")
