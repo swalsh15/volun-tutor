@@ -52,7 +52,6 @@ class CreatePost(webapp2.RequestHandler):
             template = env.get_template('/templates/post.html')
             self.response.write(template.render())
     def post(self):
-
         allPosts = Post.query()
         user = users.get_current_user()
         if user:
@@ -86,21 +85,36 @@ class ProfileHandler(webapp2.RequestHandler):
             self.response.write(template.render())
     def post(self):
         user = users.get_current_user()
-        new_user = User(name = self.request.get('name'),
-        type = self.request.get('type'),
-        zipcode = self.request.get('zipcode'),
-        grade = self.request.get('grade'),
-        id = user.user_id())
+        #user variables
+        name = self.request.get('name')
+        type = self.request.get('type')
+        zipcode = self.request.get('zipcode')
+        grade = self.request.get('grade')
+        id = user.user_id()
+
+        new_user = User(name = name,
+        type = type,
+        zipcode = zipcode,
+        grade = grade,
+        id = id)
 
         new_user.put()
-        self.redirect('/profile')
+
+        template_vars = {'name': name, 'type': type,
+        'zipcode': zipcode, 'grade': grade, 'id': id,
+        'logout_url' : users.create_logout_url('/')}
+
+        template = env.get_template('/templates/profile.html')
+        self.response.write(template.render(template_vars))
 
 class ShowProfile(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         profile_info = User.query(User.id == user.user_id()).get()
 
-        template_vars = {'name': profile_info.name, 'type': profile_info.type, 'zipcode': profile_info.zipcode, 'grade': profile_info.grade, 'id': profile_info.id}
+        template_vars = {'name': profile_info.name, 'type': profile_info.type,
+        'zipcode': profile_info.zipcode, 'grade': profile_info.grade, 'id': profile_info.id,
+        'logout_url' : users.create_logout_url('/')}
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
