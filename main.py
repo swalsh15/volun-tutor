@@ -51,6 +51,7 @@ class ViewPosts(webapp2.RequestHandler):
     def get(self):
         title = []
         content = []
+        authors = []
 
         #get current user's type
         user = users.get_current_user()
@@ -68,12 +69,16 @@ class ViewPosts(webapp2.RequestHandler):
         for blog_post in allPosts.fetch():
             title.append(blog_post.title)
             content.append(blog_post.content)
+            if blog_post.author != None:
+                authors.append(blog_post.author.get().name)
 
         template_vars = {
             'title': title,
             'content': content,
             'length' : len(title),
-            'feed_name' : feed_name
+            'feed_name' : feed_name,
+            'author': authors
+
         }
         template = env.get_template('/templates/view_posts.html')
         self.response.write(template.render(template_vars))
@@ -91,10 +96,12 @@ class CreatePost(webapp2.RequestHandler):
         title = self.request.get('title')
         content = self.request.get('post')
         author = User.query(User.id == user.user_id()).get() #returns user object
+
         if user:
             new_post = Post(type = author.type,
             title = self.request.get('title'),
-            content = self.request.get('post'))
+            content = self.request.get('post'),
+            author = author.key)
             new_post.put()
             # title = []
             # content = []
@@ -115,6 +122,7 @@ class CreatePost(webapp2.RequestHandler):
             template_vars= {
             'title': title,
             'content':content,
+            'author': author.name
             }
             template = env.get_template('/templates/confirmpost.html')
             self.response.write(template.render(template_vars))
@@ -173,6 +181,7 @@ class Post(ndb.Model):
     title = ndb.StringProperty()
     type = ndb.StringProperty()
     content = ndb.StringProperty()
+    author = ndb.KeyProperty()
 
 #testing method for posts
 def addPost(title, type, content):
