@@ -72,7 +72,7 @@ class ViewPosts(webapp2.RequestHandler):
             content.append(blog_post.content)
             if blog_post.author != None:
                 authors.append(blog_post.author)
-                author_names.append(blog_post.author_name)
+                author_names.append(blog_post.author.get().name)
 
         template_vars = {
             'title': title,
@@ -117,26 +117,10 @@ class CreatePost(webapp2.RequestHandler):
             author = author.key,
             author_name = author.name)
             new_post.put()
-            # title = []
-            # content = []
-            # title.append(new_post.title)
-            # content.append(new_post.content)
-            #
-            # for blog_post in allPosts.fetch():
-            #     title.append(blog_post.title)
-            #     content.append(blog_post.content)
-            #
-            # template_vars = {
-            #     'title': title,
-            #     'content': content,
-            #     'length' : len(title)
-            # }
-            # template = env.get_template('/templates/view_posts.html')
-            # self.response.write(template.render(template_vars))
             template_vars= {
             'title': title,
             'content':content,
-            'author': author.name
+            'author': author.name,
             }
             template = env.get_template('/templates/confirmpost.html')
             self.response.write(template.render(template_vars))
