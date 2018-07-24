@@ -61,6 +61,7 @@ html{
   .navlinks{
     height: fit-content;
     color: black;
+    padding-right: 15px;
   }
 .form{
   text-align: center;
