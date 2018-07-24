@@ -171,6 +171,17 @@ class Post(ndb.Model):
     type = ndb.StringProperty()
     content = ndb.StringProperty()
 
+def addPost(title, type, content):
+    matching_songs = Post.query().filter(Post.title == title).filter(Post.type == type).filter(Post.content == content).fetch()
+
+    # Only add if post does not exist in db.
+    if len(matching_songs) == 0:
+        new_song = Post(title=title, type=type, content=content)
+        new_song.put()
+
+addPost("Help I need a math tutor", "student", "Have upcoming math test, please reach out to 203-432-5322")
+addPost("Looking to tutor", "Tutor", "Need volunteer hours")
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/join', SignUp),
