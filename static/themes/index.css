@@ -2,9 +2,9 @@ body, body *{
   /* border: 1px solid purple; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   margin: 5px auto;
-  width: 85%;
+  /* width: 85%; */
   font-family: 'Domine', serif;
 
 }
@@ -17,9 +17,9 @@ body{
 .title{
 
   background-position: center;
-  background-attachment:fixed;
-  color: White;
-  text-shadow: 3px 2px black;
+  /* background-attachment:fixed; */
+  color: black;
+  /* text-shadow: 3px 2px black; */
   font-family: cursive;
   /* background-size: 70% ; */
   font-size: 150%;
@@ -41,6 +41,66 @@ img{
 }
 
 .button{
-  color: white;
+  color: black;
   background-color: #6B7D7D;
+  height: 35px;
+  text-align: center;
+  font-size: 75%;
+}
+
+.page-title{
+  margin: 0;
+  /* flex-grow: 0; */
+}
+.spacer{
+  flex-grow: 1;
+}
+nav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 250px;
+  justify-content: space-around;
+  margin: 0;
+
+  /* background-color: #6B7D7D; */
+}
+
+.header1{
+  padding: 8px, 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: flex-start; */
+  width: 97%;
+  padding: 10px;
+  align-content: space-between;
+  background-color: #6B7D7D;
+}
+.header3{
+  padding: 8px, 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: flex-start; */
+  width: 97.1%;
+  padding: 10px;
+  align-content: space-around;
+  background-color: #CCB7AE;
+}
+.header2{
+  padding: 8px, 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: flex-start; */
+  width: 97.2%;
+  padding: 10px;
+  align-content: space-between;
+  background-color: #8FBB99
+}
+
+.navlinks{
+  height: fit-content;
+  color: black;
 }

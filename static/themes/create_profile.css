@@ -62,12 +62,10 @@ html{
     height: fit-content;
     color: black;
   }
-.form{
-  text-align: center;
-}
-.input{
-  border-radius: 7px;
-}
-.button{
-   font-size: 15px;
+  .input{
+    border-radius: 7px;
+  }
+.type{
+  width: 130px;
+  height: 20px;
 }
