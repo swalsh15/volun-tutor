@@ -39,10 +39,10 @@ h1{
 
 }
 .Feed_post{
-  /* ÷ */
-  /* border-style: groove;
-  border-color: lightblue;
-  border-width: thick; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 #title{
   text-align: left;
