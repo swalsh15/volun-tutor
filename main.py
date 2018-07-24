@@ -185,14 +185,10 @@ class Post(ndb.Model):
 #testing method for posts
 def addPost(title, type, content):
     matching_post = Post.query().filter(Post.title == title).filter(Post.type == type).filter(Post.content == content).fetch()
-
     # Only add if post does not exist in db.
     if len(matching_post) == 0:
         new_post = Post(title=title, type=type, content=content)
         new_post.put()
-
-addPost("Help I need a math tutor", "student", "Have upcoming math test, please reach out to 203-432-5322")
-addPost("Looking to tutor", "Tutor", "Need volunteer hours")
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
