@@ -38,12 +38,9 @@
   {% for i in range(length)%}
   <div class = "Feed_post"
   <h1 id="title"> {{title[i]}} </h1>
-
-  <form method = "post">
-  <h6> Name: {{author[i]}} </a> </h6>
-  </form>
-
+  <h6> Name: {{author[i]}}  </h6>
   <p id="content">{{content[i]}}</p>
+  <button type="submit" name="button">Profile</button>
   </div>
   <hr class = "line" width = "750">
   {% endfor %}
