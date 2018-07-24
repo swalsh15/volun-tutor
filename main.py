@@ -11,8 +11,10 @@ env = jinja2.Environment(
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        template_vars = {'user': user, 'logout_url': users.create_logout_url('/')}
         template = env.get_template('/templates/index.html')
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class SignUp(webapp2.RequestHandler):
     def get(self):
@@ -43,7 +45,20 @@ class SignUp(webapp2.RequestHandler):
 
 class ViewPosts(webapp2.RequestHandler):
     def get(self):
-        print('ee')
+        title = []
+        content = []
+        allPosts = Post.query()
+        for blog_post in allPosts.fetch():
+            title.append(blog_post.title)
+            content.append(blog_post.content)
+
+        template_vars = {
+            'title': title,
+            'content': content,
+            'length' : len(title)
+        }
+        template = env.get_template('/templates/view_posts.html')
+        self.response.write(template.render(template_vars))
 
 class CreatePost(webapp2.RequestHandler):
     def get(self):
@@ -59,23 +74,22 @@ class CreatePost(webapp2.RequestHandler):
             title = self.request.get('title'),
             content = self.request.get('post'))
             new_post.put()
+            title = []
+            content = []
+            title.append(new_post.title)
+            content.append(new_post.content)
 
-        title = []
-        content = []
-        title.append(new_post.title)
-        content.append(new_post.content)
+            for blog_post in allPosts.fetch():
+                title.append(blog_post.title)
+                content.append(blog_post.content)
 
-        for blog_post in allPosts.fetch():
-            title.append(blog_post.title)
-            content.append(blog_post.content)
-
-        template_vars = {
-            'title': title,
-            'content': content,
-            'length' : len(title)
-        }
-        template = env.get_template('/templates/view_posts.html')
-        self.response.write(template.render(template_vars))
+            template_vars = {
+                'title': title,
+                'content': content,
+                'length' : len(title)
+            }
+            template = env.get_template('/templates/view_posts.html')
+            self.response.write(template.render(template_vars))
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
