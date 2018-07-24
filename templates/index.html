@@ -18,7 +18,9 @@
           {% if current_user == None %}
           <a class = "navlinks" href = "/create_profile">Create Profile</a>
           {% else %}
-          <a class = "navlinks" href = "/profile">Profile</a>
+          <a class = "navlinks"  href = "/profile">Profile</a>
+          <a class = "navlinks" href = "/post">Create a Post</a>
+          <a class = "navlinks" href = "/view_posts">View Your Feed</a>
           <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
           {% endif %}
         {% else %}
