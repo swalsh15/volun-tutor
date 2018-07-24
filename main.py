@@ -12,7 +12,11 @@ env = jinja2.Environment(
 class MainPage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        template_vars = {'user': user, 'logout_url': users.create_logout_url('/')}
+        current_user = None
+        if user != None:
+            current_user = User.query(User.id == user.user_id()).get()
+
+        template_vars = {'user': user, 'logout_url': users.create_logout_url('/'), 'current_user' : current_user}
         template = env.get_template('/templates/index.html')
         self.response.write(template.render(template_vars))
 
