@@ -16,7 +16,7 @@
         <a class = "navlinks" href = "/">Home</a>
         {% if user %}
           {% if current_user == None %}
-          <a class = "navlinks" href = "/create_profile">Create Profile</a>
+          <a class = "navlinks" href = "/create_profile">Join</a>
           {% else %}
           <a class = "navlinks"  href = "/profile">Profile</a>
           <a class = "navlinks" href = "/post">Post</a>
@@ -24,7 +24,7 @@
           <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
           {% endif %}
         {% else %}
-        <a class = "navlinks" href = "/join">Log In/Join</a>
+        <a class = "navlinks" href = "/join">Join</a>
         {% endif %}
       </nav>
     </header>
@@ -42,7 +42,6 @@
     <br/>
     <li class='website_features'>Are you searching for a Tutor? <br/> Find tutors near you</li>
     <br/>
-
     <div class="tutoringgif">
       <img src="../static/themes/tutoring.gif">
     </div>
