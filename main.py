@@ -100,6 +100,11 @@ class ViewPosts(webapp2.RequestHandler):
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
+        if len(user_name) != 0:
+            first_letter = user_name[0].upper()
+        else:
+            first_letter = ""
+
         template_vars = {
         'name': user_name,
         'type': profile_info.type,
@@ -107,7 +112,7 @@ class ViewPosts(webapp2.RequestHandler):
         'grade': profile_info.grade,
         'length': len(title),
         'title': title,
-        'first_letter': user_name[0].upper(),
+        'first_letter': first_letter,
         'edit_button' : False,
         'content': content,
         'id': profile_info.id,
@@ -140,11 +145,19 @@ class CreatePost(webapp2.RequestHandler):
             new_post_key= new_post.put()
             author.posts.append(new_post_key)
             author.put()
+            profile_info = User.query(User.id == user.user_id()).get()
+            profile_type = profile_info.type
+            if profile_type == 'Tutor':
+                otype = 'Student'
+            else:
+                otype = 'Tutor'
+
 
             template_vars= {
             'title': title,
             'content':content,
             'author': author.name,
+            'Opposite_type': otype
             }
             template = env.get_template('/templates/confirmpost.html')
             self.response.write(template.render(template_vars))
@@ -173,7 +186,10 @@ class ProfileHandler(webapp2.RequestHandler):
         grade = grade,
         id = id,
         email = email)
-
+        if len(name) != 0:
+            first_letter = name[0].upper()
+        else:
+            first_letter = ""
         new_user.put()
 
         template_vars = {
@@ -184,7 +200,7 @@ class ProfileHandler(webapp2.RequestHandler):
         'length': 0,
         'id': id,
         'logout_url' : users.create_logout_url('/'),
-        'first_letter': name[0].upper(),
+        'first_letter': first_letter,
         'email': email
         }
 
@@ -203,10 +219,15 @@ class ShowProfile(webapp2.RequestHandler):
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
+        if len(profile_info.name) != 0:
+            first_letter = profile_info.name[0].upper()
+        else:
+            first_letter = ""
+
         template_vars = {
         'name': profile_info.name,
         'edit_button': True,
-        'first_letter': user_name[0].upper(),
+        'first_letter': first_letter,
         'type': profile_info.type,
         'zipcode': profile_info.zipcode,
         'grade': profile_info.grade,
@@ -240,7 +261,7 @@ class UpdateProfile(webapp2.RequestHandler):
         user_object.name = self.request.get('name')
         user_object.type = self.request.get('type')
         user_object.grade = self.request.get('grade')
-        user_object.zicode = self.request.get('zipcode')
+        user_object.zipcode = self.request.get('zipcode')
 
         user_object.put()
 
@@ -248,13 +269,28 @@ class UpdateProfile(webapp2.RequestHandler):
         content = []
         user = users.get_current_user()
         profile_info = User.query(User.id == user.user_id()).get()
+        user_name = profile_info.name
         user_posts = profile_info.posts
         for user_post in user_posts:
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
-        template_vars = {'name': user_object.name, 'type': user_object.type,
-        'zipcode': user_object.zipcode, 'grade': user_object.grade,'length': len(title), 'title': title, 'content': content, 'email': profile_info.email}
+        if len(user_object.name) != 0:
+            first_letter = user_object.name[0].upper()
+        else:
+            first_letter = ""
+
+        template_vars = {
+        'name': user_object.name,
+        'first_letter': first_letter,
+        'type': user_object.type,
+        'zipcode': user_object.zipcode,
+        'grade': user_object.grade,
+        'length': len(title),
+        'title': title,
+        'content': content,
+        'email': profile_info.email
+        }
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
