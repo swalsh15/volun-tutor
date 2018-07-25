@@ -140,11 +140,19 @@ class CreatePost(webapp2.RequestHandler):
             new_post_key= new_post.put()
             author.posts.append(new_post_key)
             author.put()
+            profile_info = User.query(User.id == user.user_id()).get()
+            profile_type = profile_info.type
+            if profile_type == 'Tutor':
+                otype = 'Student'
+            else:
+                otype = 'Tutor'
+
 
             template_vars= {
             'title': title,
             'content':content,
             'author': author.name,
+            'Opposite_type': otype
             }
             template = env.get_template('/templates/confirmpost.html')
             self.response.write(template.render(template_vars))
