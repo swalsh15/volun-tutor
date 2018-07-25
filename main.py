@@ -116,7 +116,10 @@ class CreatePost(webapp2.RequestHandler):
             content = self.request.get('post'),
             author = author.key,
             author_name = author.name)
-            new_post.put()
+            new_post_key= new_post.put()
+            author.posts.append(new_post_key)
+            author.put()
+
             template_vars= {
             'title': title,
             'content':content,
@@ -158,12 +161,28 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class ShowProfile(webapp2.RequestHandler):
     def get(self):
+        title = []
+        content = []
         user = users.get_current_user()
         profile_info = User.query(User.id == user.user_id()).get()
+        user_posts = profile_info.posts
+        for user_post in user_posts:
+            title.append(user_post.get().title)
+            content.append(user_post.get().content)
+        print title
+        print content
 
-        template_vars = {'name': profile_info.name, 'type': profile_info.type,
-        'zipcode': profile_info.zipcode, 'grade': profile_info.grade, 'id': profile_info.id,
-        'logout_url' : users.create_logout_url('/')}
+        template_vars = {
+        'name': profile_info.name,
+        'type': profile_info.type,
+        'zipcode': profile_info.zipcode,
+        'grade': profile_info.grade,
+        'length': len(title),
+        'title': title,
+        'content': content,
+        'id': profile_info.id,
+        'logout_url' : users.create_logout_url('/')
+        }
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
@@ -174,6 +193,7 @@ class User(ndb.Model):
     zipcode = ndb.StringProperty()
     grade = ndb.StringProperty()
     id = ndb.StringProperty()
+    posts = ndb.KeyProperty(kind = "Post", repeated= True)
 
 class Post(ndb.Model):
     title = ndb.StringProperty()
