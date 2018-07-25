@@ -91,18 +91,23 @@ class ViewPosts(webapp2.RequestHandler):
         key = ndb.Key(urlsafe = key_string)
 
         profile_info = key.get()
+        if profile_info.name:
+            user_name = profile_info.name
+        else:
+            user_name = 'ononononon'
         user_posts = profile_info.posts
         for user_post in user_posts:
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
         template_vars = {
-        'name': profile_info.name,
+        'name': user_name,
         'type': profile_info.type,
         'zipcode': profile_info.zipcode,
         'grade': profile_info.grade,
         'length': len(title),
         'title': title,
+        'first_letter': user_name[0].upper(),
         'edit_button' : False,
         'content': content,
         'id': profile_info.id,
