@@ -59,7 +59,7 @@ nav{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 250px;
+  width: 30%;
   justify-content: space-around;
   margin: 0;
 
@@ -118,4 +118,9 @@ nav{
   width: 100px;
   display: flex;
   flex-direction: row;
+}
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
 }
