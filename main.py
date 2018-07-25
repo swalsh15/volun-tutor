@@ -189,8 +189,13 @@ class UpdateProfile(webapp2.RequestHandler):
         user_object.zicode = self.request.get('zipcode')
 
         user_object.put()
-        self.redirect('/profile')
 
+        template_vars = {'name': user_object.name, 'type': user_object.type,
+        'zipcode': user_object.zipcode, 'grade': user_object.grade}
+
+        # template = env.get_template('/templates/profile.html')
+        # self.response.write(template.render(template_vars))
+        self.redirect('/profile')
 
 class User(ndb.Model):
     name = ndb.StringProperty()
