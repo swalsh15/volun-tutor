@@ -100,6 +100,11 @@ class ViewPosts(webapp2.RequestHandler):
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
+        if len(user_name) != 0:
+            first_letter = user_name[0].upper()
+        else:
+            first_letter = ""
+
         template_vars = {
         'name': user_name,
         'type': profile_info.type,
@@ -107,7 +112,7 @@ class ViewPosts(webapp2.RequestHandler):
         'grade': profile_info.grade,
         'length': len(title),
         'title': title,
-        'first_letter': user_name[0].upper(),
+        'first_letter': first_letter,
         'edit_button' : False,
         'content': content,
         'id': profile_info.id,
@@ -173,7 +178,10 @@ class ProfileHandler(webapp2.RequestHandler):
         grade = grade,
         id = id,
         email = email)
-
+        if len(name) != 0:
+            first_letter = name[0].upper()
+        else:
+            first_letter = ""
         new_user.put()
 
         template_vars = {
@@ -184,7 +192,7 @@ class ProfileHandler(webapp2.RequestHandler):
         'length': 0,
         'id': id,
         'logout_url' : users.create_logout_url('/'),
-        'first_letter': name[0].upper(),
+        'first_letter': first_letter,
         'email': email
         }
 
@@ -203,11 +211,15 @@ class ShowProfile(webapp2.RequestHandler):
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
+        if len(profile_info.name) != 0:
+            first_letter = profile_info.name[0].upper()
+        else:
+            first_letter = ""
 
         template_vars = {
         'name': profile_info.name,
         'edit_button': True,
-        'first_letter': user_name[0].upper(),
+        'first_letter': first_letter,
         'type': profile_info.type,
         'zipcode': profile_info.zipcode,
         'grade': profile_info.grade,
@@ -255,9 +267,14 @@ class UpdateProfile(webapp2.RequestHandler):
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
+        if len(user_object.name) != 0:
+            first_letter = user_object.name[0].upper()
+        else:
+            first_letter = ""
+
         template_vars = {
         'name': user_object.name,
-        'first_letter': user_name[0].upper(),
+        'first_letter': first_letter,
         'type': user_object.type,
         'zipcode': user_object.zipcode,
         'grade': user_object.grade,
