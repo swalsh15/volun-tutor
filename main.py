@@ -175,7 +175,8 @@ class ProfileHandler(webapp2.RequestHandler):
         'length': 0,
         'id': id,
         'logout_url' : users.create_logout_url('/'),
-        'first_letter': name[0].upper()}
+        'first_letter': name[0].upper()
+        }
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
@@ -187,6 +188,7 @@ class ShowProfile(webapp2.RequestHandler):
         user = users.get_current_user()
         profile_info = User.query(User.id == user.user_id()).get()
         user_posts = profile_info.posts
+        user_name = profile_info.name
         for user_post in user_posts:
             title.append(user_post.get().title)
             content.append(user_post.get().content)
@@ -194,6 +196,7 @@ class ShowProfile(webapp2.RequestHandler):
         template_vars = {
         'name': profile_info.name,
         'edit_button': True,
+        'first_letter': user_name[0].upper(),
         'type': profile_info.type,
         'zipcode': profile_info.zipcode,
         'grade': profile_info.grade,
