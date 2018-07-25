@@ -1,9 +1,13 @@
 <html>
 <head>
 <link rel="stylesheet" href="/static/themes/template.css">
-<link rel="stylesheet" href="/static/themes/profile.css">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/themes/profile.css">
 </head>
 </head>
 
@@ -46,11 +50,11 @@
     <h3 class = "first_letter">{{first_letter}}</h3>
 
   </div>
+
   <div class = "profile_description">
   <h1 class="title">{{type}} </h1>
   <p>Grade: {{grade}} </p>
   <p>Zip Code: {{zipcode}} </p>
-  <p> {{email}} </p>
 
   <!-- <div style="margin: 24px 0;">
     <a href="#"><i class="fa fa-dribbble"></i></a>
@@ -58,19 +62,33 @@
     <a href="#"><i class="fa fa-linkedin"></i></a>
     <a href="#"><i class="fa fa-facebook"></i></a>
  </div> -->
+</div>
  {% if edit_button %}
  <form method = "post">
  <button type="submit" name="edit" value = "{{name}}"> Edit Profile </button>
  </form>
  {% endif %}
 
- <h1> {{name}}'s Posts </h1>
+</div>
+<br>
+<br>
  {% for i in range(length)%}
-   <div>
+   <!-- <div>
    <h1 id="title"> {{title[i]}} </h1>
+  </div>
+  <div>
    <p id="content">{{content[i]}}</p>
    </div>
-   <hr class = "line" width = "750">
+   <hr class = "line" width = "750"> -->
+
+   <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
+      <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+      <h3>{{title[i]}}</h3><br>
+      <hr class="w3-clear">
+      <h4>{{content[i]}}</h4>
+      <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+      <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
+    </div>
    {% endfor %}
  </div>
 </div>
