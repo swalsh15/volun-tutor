@@ -2,6 +2,7 @@
 <head>
 <link rel="stylesheet" href="/static/themes/profile.css">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 </head>
 
@@ -22,18 +23,43 @@
   </header>
   </header>
 
-<br>
+<!-- <br>
 <br>
 <br>
 <h1>Your Profile</h1>
 <br><br>
-<h2> Name: {{name}} </h2>
+<h2></h2>
 <br>
-<h2> Grade: {{grade}} </h2>
+<h2></h2>
 <br>
 <h2> Zipcode: {{zipcode}}</h2>
 <br>
-<h2>Type: {{type}} </h2>
+<h2>Type: {{type}} </h2> -->
+
+
+<h2 style="text-align:center">Your Profile</h2>
+<br>
+<div class="card">
+  <!-- <img src="/w3images/team2.jpg" alt="John" style="width:100%"> -->
+  <div class = "profile_pic">
+    <h3 class = "first_letter">{{name[0].upper()}}</h3>
+  </div>
+  <div class = "profile_description">
+  <h1>{{name}}</h1>
+  <p class="title">{{type}} </p>
+  <p class="title">{{grade}} </p>
+  <p>{{zipcode}} </p>
+
+  <!-- <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-dribbble"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <a href="#"><i class="fa fa-facebook"></i></a>
+ </div> -->
+ <p><button>Edit</button></p>
+ </div>
+</div>
+
 <br>
 <br>
 
