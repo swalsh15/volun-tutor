@@ -203,6 +203,7 @@ class ShowProfile(webapp2.RequestHandler):
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
+
         template_vars = {
         'name': profile_info.name,
         'edit_button': True,
@@ -240,7 +241,7 @@ class UpdateProfile(webapp2.RequestHandler):
         user_object.name = self.request.get('name')
         user_object.type = self.request.get('type')
         user_object.grade = self.request.get('grade')
-        user_object.zicode = self.request.get('zipcode')
+        user_object.zipcode = self.request.get('zipcode')
 
         user_object.put()
 
@@ -248,13 +249,23 @@ class UpdateProfile(webapp2.RequestHandler):
         content = []
         user = users.get_current_user()
         profile_info = User.query(User.id == user.user_id()).get()
+        user_name = profile_info.name
         user_posts = profile_info.posts
         for user_post in user_posts:
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
-        template_vars = {'name': user_object.name, 'type': user_object.type,
-        'zipcode': user_object.zipcode, 'grade': user_object.grade,'length': len(title), 'title': title, 'content': content, 'email': profile_info.email}
+        template_vars = {
+        'name': user_object.name,
+        'first_letter': user_name[0].upper(),
+        'type': user_object.type,
+        'zipcode': user_object.zipcode,
+        'grade': user_object.grade,
+        'length': len(title),
+        'title': title,
+        'content': content,
+        'email': profile_info.email
+        }
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
