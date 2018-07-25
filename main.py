@@ -91,22 +91,28 @@ class ViewPosts(webapp2.RequestHandler):
         key = ndb.Key(urlsafe = key_string)
 
         profile_info = key.get()
+        if profile_info.name:
+            user_name = profile_info.name
+        else:
+            user_name = 'ononononon'
         user_posts = profile_info.posts
         for user_post in user_posts:
             title.append(user_post.get().title)
             content.append(user_post.get().content)
 
         template_vars = {
-        'name': profile_info.name,
+        'name': user_name,
         'type': profile_info.type,
         'zipcode': profile_info.zipcode,
         'grade': profile_info.grade,
         'length': len(title),
         'title': title,
+        'first_letter': user_name[0].upper(),
         'edit_button' : False,
         'content': content,
         'id': profile_info.id,
-        'logout_url' : users.create_logout_url('/')
+        'logout_url' : users.create_logout_url('/'),
+        'email': profile_info.email
         }
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
@@ -152,18 +158,21 @@ class ProfileHandler(webapp2.RequestHandler):
             self.response.write(template.render())
     def post(self):
         user = users.get_current_user()
+
         #user variables
         name = self.request.get('name')
         type = self.request.get('type')
         zipcode = self.request.get('zipcode')
         grade = self.request.get('grade')
         id = user.user_id()
+        email = user.email()
 
         new_user = User(name = name,
         type = type,
         zipcode = zipcode,
         grade = grade,
-        id = id)
+        id = id,
+        email = email)
 
         new_user.put()
 
@@ -175,7 +184,8 @@ class ProfileHandler(webapp2.RequestHandler):
         'length': 0,
         'id': id,
         'logout_url' : users.create_logout_url('/'),
-        'first_letter': name[0].upper()
+        'first_letter': name[0].upper(),
+        'email': email
         }
 
         template = env.get_template('/templates/profile.html')
@@ -204,7 +214,8 @@ class ShowProfile(webapp2.RequestHandler):
         'title': title,
         'content': content,
         'id': profile_info.id,
-        'logout_url' : users.create_logout_url('/')
+        'logout_url' : users.create_logout_url('/'),
+        'email': profile_info.email
         }
 
         template = env.get_template('/templates/profile.html')
@@ -243,7 +254,7 @@ class UpdateProfile(webapp2.RequestHandler):
             content.append(user_post.get().content)
 
         template_vars = {'name': user_object.name, 'type': user_object.type,
-        'zipcode': user_object.zipcode, 'grade': user_object.grade,'length': len(title), 'title': title, 'content': content}
+        'zipcode': user_object.zipcode, 'grade': user_object.grade,'length': len(title), 'title': title, 'content': content, 'email': profile_info.email}
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
@@ -256,6 +267,7 @@ class User(ndb.Model):
     grade = ndb.StringProperty()
     id = ndb.StringProperty()
     posts = ndb.KeyProperty(kind = "Post", repeated= True)
+    email = ndb.StringProperty()
 
 class Post(ndb.Model):
     title = ndb.StringProperty()
