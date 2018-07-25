@@ -57,9 +57,12 @@
     <a href="#"><i class="fa fa-linkedin"></i></a>
     <a href="#"><i class="fa fa-facebook"></i></a>
  </div> -->
+ {% if edit_button %}
  <form method = "post">
  <button type="submit" name="edit" value = "{{name}}"> Edit Profile </button>
  </form>
+ {% endif %}
+
 
  {% for i in range(length)%}
    <div>
