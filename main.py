@@ -103,11 +103,11 @@ class ViewPosts(webapp2.RequestHandler):
         'grade': profile_info.grade,
         'length': len(title),
         'title': title,
+        'edit_button' : False,
         'content': content,
         'id': profile_info.id,
         'logout_url' : users.create_logout_url('/')
         }
-
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
 
@@ -190,11 +190,10 @@ class ShowProfile(webapp2.RequestHandler):
         for user_post in user_posts:
             title.append(user_post.get().title)
             content.append(user_post.get().content)
-        print title
-        print content
 
         template_vars = {
         'name': profile_info.name,
+        'edit_button': True,
         'type': profile_info.type,
         'zipcode': profile_info.zipcode,
         'grade': profile_info.grade,
