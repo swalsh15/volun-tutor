@@ -184,7 +184,12 @@ class UpdateProfile(webapp2.RequestHandler):
         user = users.get_current_user()
         user_object = User.query(User.id == user.user_id()).get()
         user_object.name = self.request.get('name')
+        user_object.type = self.request.get('type')
+        user_object.grade = self.request.get('grade')
+        user_object.zicode = self.request.get('zipcode')
+
         user_object.put()
+        self.redirect('/profile')
 
 
 class User(ndb.Model):
