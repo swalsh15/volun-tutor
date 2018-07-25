@@ -52,6 +52,7 @@ class ViewPosts(webapp2.RequestHandler):
         title = []
         content = []
         authors = []
+        author_names = []
 
         #get current user's type
         user = users.get_current_user()
@@ -71,14 +72,15 @@ class ViewPosts(webapp2.RequestHandler):
             content.append(blog_post.content)
             if blog_post.author != None:
                 authors.append(blog_post.author)
+                author_names.append(blog_post.author.get().name)
 
         template_vars = {
             'title': title,
             'content': content,
             'length' : len(title),
             'feed_name' : feed_name,
-            'author': authors
-
+            'author': authors,
+            'author_name': author_names
         }
         template = env.get_template('/templates/view_posts.html')
         self.response.write(template.render(template_vars))
@@ -112,28 +114,13 @@ class CreatePost(webapp2.RequestHandler):
             new_post = Post(type = author.type,
             title = self.request.get('title'),
             content = self.request.get('post'),
-            author = author.key)
+            author = author.key,
+            author_name = author.name)
             new_post.put()
-            # title = []
-            # content = []
-            # title.append(new_post.title)
-            # content.append(new_post.content)
-            #
-            # for blog_post in allPosts.fetch():
-            #     title.append(blog_post.title)
-            #     content.append(blog_post.content)
-            #
-            # template_vars = {
-            #     'title': title,
-            #     'content': content,
-            #     'length' : len(title)
-            # }
-            # template = env.get_template('/templates/view_posts.html')
-            # self.response.write(template.render(template_vars))
             template_vars= {
             'title': title,
             'content':content,
-            'author': author.name
+            'author': author.name,
             }
             template = env.get_template('/templates/confirmpost.html')
             self.response.write(template.render(template_vars))
@@ -193,18 +180,16 @@ class Post(ndb.Model):
     type = ndb.StringProperty()
     content = ndb.StringProperty()
     author = ndb.KeyProperty(kind = "User")
+    author_name = ndb.StringProperty()
 
 #testing method for posts
 def addPost(title, type, content):
     matching_post = Post.query().filter(Post.title == title).filter(Post.type == type).filter(Post.content == content).fetch()
-
     # Only add if post does not exist in db.
     if len(matching_post) == 0:
         new_post = Post(title=title, type=type, content=content)
         new_post.put()
 
-addPost("Help I need a math tutor", "student", "Have upcoming math test, please reach out to 203-432-5322")
-addPost("Looking to tutor", "Tutor", "Need volunteer hours")
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),

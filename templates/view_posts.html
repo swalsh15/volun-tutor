@@ -12,18 +12,10 @@
     <p class= "spacer"></p>
     <nav>
       <a class = "navlinks" href = "/">Home</a>
-      {% if user %}
-        {% if current_user == None %}
-        <a class = "navlinks" href = "/create_profile">Join</a>
-        {% else %}
-        <a class = "navlinks"  href = "/profile">Profile</a>
-        <a class = "navlinks" href = "/post">Post</a>
-        <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
-        {% endif %}
-      {% else %}
-      <a class = "navlinks" href = "/join">Join</a>
+      <a class = "navlinks" href = "/profile">Profile</a>
+      <a class = "navlinks" href = "/post">Post</a>
+      <a class = "navlinks" href = "/view_posts">Feed</a>
       <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
-      {% endif %}
     </nav>
   </header>
   </header>
@@ -47,7 +39,7 @@
 
   <form method = "post">
 
-  <button type="submit" name="button" value = {{author[i].urlsafe()}}> {{author[i]}}</button>
+  <button type="submit" name="button" value = {{author[i].urlsafe()}}> {{author_name[i]}}</button>
 </form>
 
   <p id="content">{{content[i]}}</p>
