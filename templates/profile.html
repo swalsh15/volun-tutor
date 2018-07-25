@@ -61,6 +61,13 @@
  <form method = "post">
  <button type="submit" name="edit" value = "{{name}}"> Edit Profile </button>
  </form>
+ {% for i in range(length)%}
+   <div>
+   <h1 id="title"> {{title[i]}} </h1>
+   <p id="content">{{content[i]}}</p>
+   </div>
+   <hr class = "line" width = "750">
+   {% endfor %}
  </div>
 </div>
 
