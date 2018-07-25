@@ -1,13 +1,4 @@
-body, body *{
-  /* border: 1px solid purple; */
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  margin: 5px auto;
-  /* width: 85%; */
-  font-family: 'Domine', serif;
 
-}
 body{
   background: url('bground.jpg') repeat-Y;
   background-attachment:;
@@ -46,64 +37,6 @@ img{
   height: 35px;
   text-align: center;
   font-size: 75%;
-}
-
-.page-title{
-  margin: 0;
-  /* flex-grow: 0; */
-}
-.spacer{
-  flex-grow: 1;
-}
-nav{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 30%;
-  justify-content: space-around;
-  margin: 0;
-
-  /* background-color: #6B7D7D; */
-}
-
-.header1{
-  padding: 8px, 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: flex-start; */
-  width: 97%;
-  padding: 10px;
-  align-content: space-between;
-  background-color: #6B7D7D;
-}
-.header3{
-  padding: 8px, 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: flex-start; */
-  width: 97.1%;
-  padding: 10px;
-  align-content: space-between;
-  background-color: #CCB7AE;
-}
-.header2{
-  padding: 8px, 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: flex-start; */
-  width: 97.2%;
-  padding: 10px;
-  align-content: space-between;
-  background-color: #8FBB99
-}
-
-.navlinks{
-  height: fit-content;
-  color: black;
-  padding-right: 15px;
 }
 .mySlides {display: none}
 /* .mySlides1{
