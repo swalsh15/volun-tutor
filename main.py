@@ -154,7 +154,7 @@ class ProfileHandler(webapp2.RequestHandler):
 
         template_vars = {'name': name, 'type': type,
         'zipcode': zipcode, 'grade': grade, 'id': id,
-        'logout_url' : users.create_logout_url('/'), first_letter: name[0].upper()}
+        'logout_url' : users.create_logout_url('/'), 'first_letter': name[0].upper()}
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
@@ -187,13 +187,14 @@ class ShowProfile(webapp2.RequestHandler):
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
     def post(self):
-        user = users.get_current_user()
-        profile = self.request.get('edit')
-        current_user = User.query(User.name == profile).get()
-
-        #so user can't change other profiles
-        if current_user.id == user.user_id():
-            self.redirect('/edit')
+        self.redirect('/edit')
+        # user = users.get_current_user()
+        # profile = self.request.get('edit')
+        # current_user = User.query(User.name == profile).get()
+        #
+        # #so user can't change other profiles
+        # if current_user.id == user.user_id():
+        #     self.redirect('/edit')
 
 class UpdateProfile(webapp2.RequestHandler):
     def get(self):
@@ -209,12 +210,21 @@ class UpdateProfile(webapp2.RequestHandler):
 
         user_object.put()
 
-        template_vars = {'name': user_object.name, 'type': user_object.type,
-        'zipcode': user_object.zipcode, 'grade': user_object.grade}
+        title = []
+        content = []
+        user = users.get_current_user()
+        profile_info = User.query(User.id == user.user_id()).get()
+        user_posts = profile_info.posts
+        for user_post in user_posts:
+            title.append(user_post.get().title)
+            content.append(user_post.get().content)
 
-        # template = env.get_template('/templates/profile.html')
-        # self.response.write(template.render(template_vars))
-        self.redirect('/profile')
+        template_vars = {'name': user_object.name, 'type': user_object.type,
+        'zipcode': user_object.zipcode, 'grade': user_object.grade,'length': len(title), 'title': title, 'content': content}
+
+        template = env.get_template('/templates/profile.html')
+        self.response.write(template.render(template_vars))
+        # self.redirect('/profile')
 
 class User(ndb.Model):
     name = ndb.StringProperty()
