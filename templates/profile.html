@@ -1,28 +1,54 @@
 <html>
 <head>
-<link rel="stylesheet" href="/static/themes/template.css">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/themes/template.css">
 <link rel="stylesheet" href="/static/themes/profile.css">
-</head>
+
 </head>
 
+
 <body>
-  <header class = "header3">
+  <!-- <header class = "header3">
   <header class = "header2">
   <header class = "header1">
     <h1 class = "page-title">Volun-Tutor</h1>
     <p class= "spacer"></p>
-    <nav>
+    <nav id = "nav">
       <a class = "navlinks" href = "/">Home</a>
       <a class = "navlinks" href = "/profile">Profile</a>
       <a class = "navlinks" href = "/post">Post</a>
       <a class = "navlinks" href = "/view_posts">Feed</a>
       <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
+    </nav>
+  </header>
+  </header>
+  </header> -->
+
+
+  <header class = "header3">
+  <header class = "header2">
+  <header class = "header1">
+    <h1 class = "page-title">Volun-Tutor</h1>
+    <p class= "spacer"></p>
+    <nav id = "nav">
+      <a class = "navlinks" href = "/">Home</a>
+      {% if name %}
+        {% if name == None %}
+        <a class = "navlinks" href = "/create_profile">Join</a>
+        {% else %}
+        <a class = "navlinks"  href = "/profile">Profile</a>
+        <a class = "navlinks" href = "/post">Post</a>
+        <a class = "navlinks" href = "/view_posts">Feed</a>
+        <a class = "navlinks" href = "{{logout_url}}">Log Out</a>
+        {% endif %}
+      {% else %}
+      <a class = "navlinks" href = "/join">Join</a>
+      {% endif %}
     </nav>
   </header>
   </header>
@@ -73,22 +99,24 @@
 <br>
 <br>
  {% for i in range(length)%}
-   <!-- <div>
+   <div>
    <h1 id="title"> {{title[i]}} </h1>
   </div>
   <div>
    <p id="content">{{content[i]}}</p>
    </div>
-   <hr class = "line" width = "750"> -->
+   <hr class = "line" width = "750">
 
-   <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
-      <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+   <!-- <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
+      <! <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
       <h3>{{title[i]}}</h3><br>
       <hr class="w3-clear">
       <h4>{{content[i]}}</h4>
       <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
       <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
-    </div>
+    </div> -->
+
+
    {% endfor %}
  </div>
 </div>
