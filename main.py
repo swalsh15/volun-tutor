@@ -151,7 +151,7 @@ class ProfileHandler(webapp2.RequestHandler):
 
         template_vars = {'name': name, 'type': type,
         'zipcode': zipcode, 'grade': grade, 'id': id,
-        'logout_url' : users.create_logout_url('/')}
+        'logout_url' : users.create_logout_url('/'), first_letter: name[0].upper()}
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
