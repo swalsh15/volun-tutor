@@ -167,6 +167,25 @@ class ShowProfile(webapp2.RequestHandler):
 
         template = env.get_template('/templates/profile.html')
         self.response.write(template.render(template_vars))
+    def post(self):
+        user = users.get_current_user()
+        profile = self.request.get('edit')
+        current_user = User.query(User.name == profile).get()
+
+        #so user can't change other profiles
+        if current_user.id == user.user_id():
+            self.redirect('/edit')
+
+class UpdateProfile(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('/templates/update.html')
+        self.response.write(template.render())
+    def post(self):
+        user = users.get_current_user()
+        user_object = User.query(User.id == user.user_id()).get()
+        user_object.name = self.request.get('name')
+        user_object.put()
+
 
 class User(ndb.Model):
     name = ndb.StringProperty()
@@ -198,4 +217,5 @@ app = webapp2.WSGIApplication([
     ('/create_profile', ProfileHandler),
     ('/post', CreatePost),
     ('/profile', ShowProfile),
+    ('/edit', UpdateProfile),
 ], debug=True)
