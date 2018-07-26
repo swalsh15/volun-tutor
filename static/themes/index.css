@@ -38,10 +38,7 @@ img{
   text-align: center;
   font-size: 75%;
 }
-.mySlides {display: none}
-/* .mySlides1{
-   width: 150%;
-} */
+
 .w3-section{
   width: 150px;
   display: flex;
@@ -56,4 +53,24 @@ a {
   text-decoration: none;
   font-size: 22px;
   color: black;
+}
+.arrows{
+  cursor: pointer;
+  margin: 30px;
+  height: 30%;
+  width: 5%;
+}
+#slides{
+  display: inline;
+}
+.slides_container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.radio_buttons{
+  background-color: red !important;
+  radius: 50% !important;
+
 }
