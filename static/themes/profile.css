@@ -65,13 +65,11 @@ button:hover, a:hover {
 #first_letter_big{
   font-size: 500%;
 }
-#profile_pic_small{
-  width: 8%;
-  height: 8%;
-  margin: 0;
-}
-#first_letter_small{
-  font-size: 125%;
+.box{
+    border: 5px;
+    border-color: red;
+    height: 30%;
+    /* height: 100%; */
 }
 .first_letter{
   display: flex;
@@ -99,9 +97,10 @@ span{
   width: 50%;
   margin: auto !important;
   text-align: center !important;
-  margin: 0 !important;
+  /* margin: 0 !important; */
   align-self: center;
   opacity: 0.7;
+  justify-content: space-between !important;
 }
 #content_title{
   color: #6B7D7D;
@@ -138,8 +137,10 @@ span{
   /* align-items: center !important;*/
 }
 #post_num{
-  color: red;
+  color: #9a8262;
   margin: 0;
+  display: flex !important;
+  flex-direction: row !important;
 
 }
 #head_info{
@@ -158,4 +159,13 @@ span{
   flex-direction: column !important;
   margin: 0;
   /* justify-content: flex-end !important; */
+}
+.box{
+    border: 5px;
+    border-color: red;
+    height: 5%;
+    /* height: 100%; */
+}
+form{
+  margin: 0 !important;
 }

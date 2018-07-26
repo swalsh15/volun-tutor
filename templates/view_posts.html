@@ -1,6 +1,11 @@
 <html>
 <head>
   <title>View Posts</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/static/themes/template.css">
   <link rel = "stylesheet" href = "/static/themes/view_posts.css">
   <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
@@ -28,31 +33,56 @@
   <br>
   <br>
 
-<div class = "holder">
-<div class = "box"></div>
-  <div class = "container">
-  <h1 id = "heading"> {{feed_name}}</h1>
-  <div class = "postBox">
 
-  {% for i in range(length)%}
-  <div class = "Feed_post"
-  <h1 id="title"> {{title[i]}} </h1>
+    <h1 id = "heading"> {{feed_name}}</h1>
+    <hr class="w3-clear">
 
-  <form method = "post">
+{% for i in range(length)%}
+<div class = "container">
+<!-- <div class = "box"></div> -->
 
-  <button type="submit" name="button" value = {{author[i].urlsafe()}}> {{author_name[i]}}</button>
-</form>
+    <div id = "space_div"></div>
+    <!-- <div class = "profile_pic" id = "profile_pic_small">
+      <h3 class = "first_letter" id = "first_letter_small" >{{first_letter}}</h3>
+    </div> -->
 
-  <p id="content">{{content[i]}}</p>
 
+   <!-- <div class = "postBox"> -->
+
+  <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+  <div class="w3-right w3-opacity" id = "post_num">
+    <form method = "post">
+
+    <button type="submit" name="button" value = {{author[i].urlsafe()}}> Name: {{author_name[i]}}</button>
+
+    </form>
+    <h1 id = "title"> Title: {{title[i]}} </h1>
+    <hr class="w3-clear">
   </div>
-  <hr class = "line" width = "750">
+  </div>
+
+  <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+
+  <div class="w3-right w3-opacity" id = "post_num">
+    <p id="content">Content: {{content[i]}}</p>
+    <hr class="w3-clear">
+  </div>
+  </div>
+
+
+  <!-- <div class = "box"></div> -->
+  </div>
+  <div class = "box"></div>
   {% endfor %}
 
-</div>
-</div>
 
-<div class = "box"></div>
-</div>
+
+
+
+
+
+
+
+
 </body>
 </html>

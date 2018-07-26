@@ -122,24 +122,40 @@
 <br> -->
 
 <div id = "title-content">
-   <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+
+<!-- <div id = "head_info"> -->
+<div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+  <div class="w3-right w3-opacity" id = "post_num">Post: {{i + 1}}</div>
+  <div id = "space_div"></div>
+  <!-- <div class = "profile_pic" id = "profile_pic_small">
+    <h3 class = "first_letter" id = "first_letter_small" >{{first_letter}}</h3>
+  </div> -->
+  <hr class="w3-clear">
+</div>
+
+
+<div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
    <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
    <h3 id = "content_title">Title: {{title[i]}}</h3><br>
    <hr class="w3-clear">
    <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
- </div>
+</div>
+
+
 <div class = "line"></div>
- <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
- <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
- <h4 id = "content_info">Content: {{content[i]}}</h4><br>
- <hr class="w3-clear">
- <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
- <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
+
+
+<div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+   <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+   <h4 id = "content_info">Content: {{content[i]}}</h4><br>
+   <hr class="w3-clear">
+   <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+   <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
 </div>
-<br>
+
 </div>
-</div>
+<div class = "box"></div>
    {% endfor %}
 
 
