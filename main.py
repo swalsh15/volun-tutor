@@ -73,7 +73,7 @@ class ViewPosts(webapp2.RequestHandler):
             content.append(blog_post.content)
             if blog_post.author != None:
                 authors.append(blog_post.author)
-                author_names.append(blog_post.author.get().name)
+                author_names.append(blog_post.author_name)
 
         template_vars = {
             'title': title,
@@ -92,10 +92,12 @@ class ViewPosts(webapp2.RequestHandler):
         key = ndb.Key(urlsafe = key_string)
 
         profile_info = key.get()
+        print("LOOOKOKOK")
+        print(profile_info)
         if profile_info.name:
             user_name = profile_info.name
         else:
-            user_name = 'ononononon'
+            user_name = ' '
         user_posts = profile_info.posts
         for user_post in user_posts:
             title.append(user_post.get().title)
