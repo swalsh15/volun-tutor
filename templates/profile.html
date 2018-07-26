@@ -71,9 +71,9 @@
 <h1>{{name}}'s Profile</h1>
 <div class="card">
   <!-- <img src="/w3images/team2.jpg" alt="John" style="width:100%"> -->
-  <div class = "profile_pic">
+  <div class = "profile_pic" id = "profile_pic_big">
 
-    <h3 class = "first_letter">{{first_letter}}</h3>
+    <h3 class = "first_letter" id = "first_letter_big" >{{first_letter}}</h3>
 
   </div>
 
@@ -96,32 +96,54 @@
  {% endif %}
 
 </div>
+
+
+
 <br>
 <br>
 <h1>{{name}}'s Posts</h1>
-<hr class = "line" width = "750">
  {% for i in range(length)%}
-   <div>
+   <!-- <div>
    <h1 id="title"> {{title[i]}} </h1>
   </div>
   <div>
    <p id="content">{{content[i]}}</p>
    </div>
-   <hr class = "line" width = "750">
-
-   <!-- <div class="w3-container w3-card w3-white w3-round w3-margin" ><br>
-      <! <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
-      <h3>{{title[i]}}</h3><br>
-      <hr class="w3-clear">
-      <h4>{{content[i]}}</h4>
-      <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
-      <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
-    </div>
+   <hr class = "line" width = "750"> -->
 
 
-   {% endfor %}
+<!-- <div class = "w3-container w3-card w3-white w3-round w3-margin" id ="contain_posts">
+  <div id = "head_info">
+ <span class="w3-right w3-opacity" id = "post_num">Post: {{i + 1}}</span>
+ <div id = "space_div"></div>
+ <div class = "profile_pic" id = "profile_pic_small">
+   <h3 class = "first_letter" id = "first_letter_small" >{{first_letter}}</h3>
  </div>
+ </div>
+<br>
+<br> -->
+
+<div id = "title-content">
+   <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+   <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+   <h3 id = "content_title">Title: {{title[i]}}</h3><br>
+   <hr class="w3-clear">
+   <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+   <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
+ </div>
+<div class = "line"></div>
+ <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+ <!-- <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+ <h4 id = "content_info">Content: {{content[i]}}</h4><br>
+ <hr class="w3-clear">
+ <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+ <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> -->
 </div>
+<br>
+</div>
+</div>
+   {% endfor %}
+
 
 <br>
 <br>

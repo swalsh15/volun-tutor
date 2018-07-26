@@ -50,8 +50,30 @@ button:hover, a:hover {
    flex-direction: row;
 
 }
-.first_letter{
+.profile_pic{
+   background-color: black;
+   color: white;
+   font-weight: bold;
+   display: flex;
+   flex-direction: row;
+
+}
+#profile_pic_big{
+  width: 50%;
+  height: 25%;
+}
+#first_letter_big{
   font-size: 500%;
+}
+#profile_pic_small{
+  width: 8%;
+  height: 8%;
+  margin: 0;
+}
+#first_letter_small{
+  font-size: 125%;
+}
+.first_letter{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -70,4 +92,70 @@ h1{
 }
 span{
   color: white;
+}
+#post_container{
+  display: flex !important;
+  flex-direction: row !important;
+  width: 50%;
+  margin: auto !important;
+  text-align: center !important;
+  margin: 0 !important;
+  align-self: center;
+  opacity: 0.7;
+}
+#content_title{
+  color: #6B7D7D;
+  display: flex !important;
+  flex-direction: row !important;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  /* font-size: */
+}
+#content_info{
+  display: flex !important;
+  flex-direction: row !important;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+}
+.line{
+  border-left: 4px solid gray;
+  height:  auto;
+  display: flex !important;
+  flex-direction: row !important;
+  margin: 0;
+}
+#contain_posts{
+  display: flex !important;
+  flex-direction: row !important;
+  align-self: center;
+  width: 50%;
+  background-color: #6B7D7D !important;
+  justify-content: space-between;
+  /* border-radius: 15px; */
+  /* margin: 0 !important; */
+  /* align-items: center !important;*/
+}
+#post_num{
+  color: red;
+  margin: 0;
+
+}
+#head_info{
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100%;
+  justify-content: flex-start !important;
+}
+
+#space_div{
+  width: 3%;
+  margin: 0;
+}
+#title-content{
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0;
+  /* justify-content: flex-end !important; */
 }
