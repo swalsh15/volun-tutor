@@ -35,6 +35,7 @@ class SignUp(webapp2.RequestHandler):
                  self.redirect('/create_profile')
         else:
             login_url = users.create_login_url('/')
+            self.redirect(login_url)
 
 
         template_vars = {
