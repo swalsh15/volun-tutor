@@ -70,7 +70,21 @@ a {
   justify-content: space-around;
 }
 .radio_buttons{
-  background-color: red !important;
-  radius: 50% !important;
+  font-weight: bold;
+  /* background-color: red !important; */
+  /* radius: 50% !important; */
+  height: 15px;
+  width: 10px;
+  border-width: 2px !important;
+
+}
+
+#radio_row{
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 25%;
 
 }

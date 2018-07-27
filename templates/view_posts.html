@@ -36,33 +36,44 @@
 
     <h1 id = "heading"> {{feed_name}}</h1>
     <hr class="w3-clear">
-
+<!-- <div class = "spacer"></div> -->
 {% for i in range(length)%}
-<div class = "container">
-<!-- <div class = "box"></div> -->
+<!-- <div class="w3-container w3-card w3-white w3-round w3-margin" id = "outer"><br> -->
 
-    <div id = "space_div"></div>
+<div class = "container">
+
+<!-- <div class = "box"></div> -->
     <!-- <div class = "profile_pic" id = "profile_pic_small">
       <h3 class = "first_letter" id = "first_letter_small" >{{first_letter}}</h3>
     </div> -->
 
-
    <!-- <div class = "postBox"> -->
+   <div class="w3-container w3-card w3-white w3-round w3-margin post_container" id = "left"><br>
+   <div class="w3-right w3-opacity" id = "post_num">
 
-  <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
+     <form method = "post">
+    <div class = "profile_pic" id = "profile_pic_small">
+
+         <h3 class = "first_letter" id = "first_letter_small" >{{first_letter}}</h3>
+
+    </div>
+     <button type="submit" id = "author_name_button" name="button" value = {{author[i].urlsafe()}}> User: {{author_name[i]}}
+
+      </button>
+
+     </form>
+     <hr class="w3-clear">
+   </div>
+   </div>
+
+  <div class="w3-container w3-card w3-white w3-round w3-margin post_container" id = "center"><br>
   <div class="w3-right w3-opacity" id = "post_num">
-    <form method = "post">
-
-    <button type="submit" name="button" value = {{author[i].urlsafe()}}> Name: {{author_name[i]}}</button>
-
-    </form>
-    <h1 id = "title"> Title: {{title[i]}} </h1>
+    <p id = "title"> Title: {{title[i]}} </p>
     <hr class="w3-clear">
   </div>
   </div>
 
-  <div class="w3-container w3-card w3-white w3-round w3-margin" id = "post_container"><br>
-
+  <div class="w3-container w3-card w3-white w3-round w3-margin post_container" id = "right"><br>
   <div class="w3-right w3-opacity" id = "post_num">
     <p id="content">Content: {{content[i]}}</p>
     <hr class="w3-clear">
@@ -72,12 +83,15 @@
 
   <!-- <div class = "box"></div> -->
   </div>
-  <div class = "box"></div>
+<br>
+<!-- <div class = "spacer"></div> -->
   {% endfor %}
 
 
 
-
+  <div class = "div"></div>
+  <div class = "div"></div>
+  <div class = "div"></div>
 
 
 

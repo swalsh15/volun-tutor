@@ -16,7 +16,7 @@ background-color: #EFD9CE;
   /* flex-grow: 0; */
 }
 .spacer{
-  flex-grow: 1;
+  flex-grow: 1 !important;
 }
 #nav{
   display: flex;

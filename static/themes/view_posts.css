@@ -5,19 +5,30 @@ h1{
   text-align: center;
 }
 .container{
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  /* width: 60.999% !important; */
+  width: 60% !important;
+  margin: 0;
   line-height: 300%;
   text-align: center;
+  /* justify-content: center; */
   border-radius: 25px;
   flex-wrap: wrap !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  /* display: block; */
+  background-color: transparent;
+  align-self: center;
+  /* height: 200px; */
+  /* height: relative !important; */
+  /* height: auto !important; */
+  /* opacity: 0.7; */
+
   /* display: flex !important; */
   /* flex-direction: row !important; */
   /* border: 5px solid lightblue;*/
   /* border: 5px solid; */
   /* box-sizing: border-box */
-
 }
 .postBox{
   /* border: 2px solid lightblue; */
@@ -32,17 +43,34 @@ h1{
 
 }
 #title{
-  text-align: left;
+  text-align: justify;
   font-style: italic;
   font-weight:bolder;
-  font-size: 20px;
+  line-height: 1.5 !important;
+  /* font-size: 20px; */
+  width: 100% !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  text-overflow: ellipsis !important;
+  /* height: inherit !important; */
+  /* height: inherit !important; */
 }
 #content{
   text-align: justify;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  /* font-size: 15px; */
+  width: 100% !important;
   line-height: 1.5 !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  text-overflow: ellipsis !important;
+  /* height: 10% !important; */
+  /* height: inherit !important; */
+
+}
+#author_name{
+  /* font-size: px; */
 }
 .box{
     border: 5px;
@@ -50,32 +78,109 @@ h1{
     height: 30%;
     /* height: 100%; */
 }
-.holder{
+/* .holder{
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-}
-#post_container{
+} */
+.post_container{
   display: flex !important;
-  flex-direction: column !important;
-  width: 25%;
+  flex-direction: row !important;
+  /* width: 100% !important; */
+  flex: 1;
+  margin: 0!important;
+  /* height: relative; */
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  background-color: gray !important;
+  width: 33.3%  !important;
   margin: 0 !important;
   text-align: center !important;
   /* margin: 0 !important; */
-  align-self: center;
-  opacity: 0.7;
-  justify-content: space-between !important;
+  /* align-self: center; */
+  /* opacity: 0.7; */
+  /* justify-content: space-between !important; */
   line-height: 1.5 !important;
+  margin: 0 !important;
+  text-overflow: ellipsis !important;
+  min-height: 10% !important;
+  position: relative;
+  height: inherit;
+}
+.profile_pic{
+   /* width: 70%;
+   height: 70%; */
+   background-color: black;
+   color: white;
+   font-weight: bold;
+
+}
+.first_letter{
+  align-items: center;
+  margin: 0 auto;
+  color: white;
 }
 /* Clear floats after the columns */
 #profile_pic_small{
-  width: 8%;
-  height: 8%;
+  width: 60px;
+  height: 60px;
   margin: 0;
   display: flex !important;
   flex-direction: row !important;
+  align-self: center;
 }
 #first_letter_small{
   font-size: 125%;
+}
+/*#left{
+  /* float: left; */
+  /* width: 30% !important%; */
+  /* height: 10% !important; */
+  /* display: inline-block; */
+/* }
+#center{ */
+  /* float: auto; */
+  /* width: 30% !important%; */
+  /* height: 10% !important; */
+  /* display: inline-block; */
+/* }
+#right{ */
+  /* float: right; */
+  /* width: 30% !important%; */
+  /* height: 10% !important; */
+  /* display: inline-block; */
+/* } */
+#author_name_button{
+  width: 40% !important;
+  height:  5% !important;
+  text-align: : center;
+  border-radius: 10px;
+  /* height: 120% !important; */
+  /* font-size: 80%; */
+  text-overflow: ellipsis !important;
+  align-self: center !important;
+}
+
+/* .spacer{
+  flex-grow: 1 !important;
+} */
+
+.div{
+  background-color: red !important;
+  length: 200px !important;
+  width: 200px !important;
+}
+/* .outer{
+  display: flex !important;
+  flex-direction: row !important;
+} */
+#post_num{
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+
+}
+form{
+  width: 100%;
 }
