@@ -94,6 +94,10 @@
  <form method = "post">
  <button type="submit" name="edit" value = "{{name}}"> Edit Profile </button>
  </form>
+ {% else %}
+ <form action="mailto:{{email}}">
+ <button type="submit" name="edit" value = "{{email}}"> Email </button>
+ </form>
  {% endif %}
 
 </div>

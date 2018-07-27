@@ -34,7 +34,7 @@ class SignUp(webapp2.RequestHandler):
             else:
                  self.redirect('/create_profile')
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url('/create_profile')
             self.redirect(login_url)
 
 
@@ -81,7 +81,8 @@ class ViewPosts(webapp2.RequestHandler):
             'length' : len(title),
             'feed_name' : feed_name,
             'author': authors,
-            'author_name': author_names
+            'author_name': author_names,
+            'logout_url' : users.create_logout_url('/')
         }
         template = env.get_template('/templates/view_posts.html')
         self.response.write(template.render(template_vars))
@@ -169,7 +170,9 @@ class CreatePost(webapp2.RequestHandler):
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        if user:
+        if User.query(User.id == user.user_id()).get():
+            self.redirect('/')
+        else:
             template = env.get_template('/templates/create_profile.html')
             self.response.write(template.render())
     def post(self):
@@ -262,9 +265,12 @@ class UpdateProfile(webapp2.RequestHandler):
         user = users.get_current_user()
         user_object = User.query(User.id == user.user_id()).get()
         user_object.name = self.request.get('name')
-        user_object.type = self.request.get('type')
-        user_object.grade = self.request.get('grade')
-        user_object.zipcode = self.request.get('zipcode')
+        if self.request.get('name') != "":
+            user_object.type = self.request.get('type')
+        if self.request.get('grade') != "":
+            user_object.grade = self.request.get('grade')
+        if self.request.get('zipcode') != "":
+            user_object.zipcode = self.request.get('zipcode')
 
         user_object.put()
 
