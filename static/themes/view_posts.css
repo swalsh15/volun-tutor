@@ -93,7 +93,8 @@ h1{
   /* height: relative; */
   word-wrap: break-word !important;
   overflow-wrap: break-word !important;
-  background-color: gray !important;
+  background-color: white !important;
+  opacity: 0.7;
   width: 33.3%  !important;
   margin: 0 !important;
   text-align: center !important;
@@ -153,13 +154,14 @@ h1{
 /* } */
 #author_name_button{
   width: 40% !important;
-  height:  5% !important;
+  height:  7% !important;
   text-align: : center;
   border-radius: 10px;
   /* height: 120% !important; */
   /* font-size: 80%; */
   text-overflow: ellipsis !important;
   align-self: center !important;
+  text-align: center;
 }
 
 /* .spacer{
